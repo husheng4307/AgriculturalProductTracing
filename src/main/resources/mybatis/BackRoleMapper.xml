@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0/EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.beanyon.apt.common.mapper.IBackRoleMapper">
+    <!-- 插入后端用户角色信息 -->
+    <insert id="insertRole" parameterType="site.beanyon.apt.common.entity.back.BackRole">
+        insert into back_role(pid, name, description, sort, create_user) values(#{pid}, #{name}, #{description},
+        #{sort}, #{createUser});
+    </insert>
+
+    <!-- 根据用户id获取角色列表 -->
+    <select id="findRolesByUid" parameterType="int" resultType="site.beanyon.apt.common.entity.back.BackRole">
+        select id, pid, name, description, sort, create_time, update_time, create_user, update_user
+        from back_role
+        where id in (
+        select role_id from back_user_role_rel where user_id = #{user_id}
+        )
+    </select>
+
+    <!-- 插入后台角色及权限关系到数据库 -->
+    <insert id="insertRoleRightRel" parameterType="int">
+        insert into back_role_right_rel(role_id, right_id)
+        values(#{roleId}, #{rightId})
+    </insert>
+
+    <!-- 查询后台全部角色 -->
+    <select id="findAllRoles" resultType="site.beanyon.apt.common.entity.back.BackRole">
+        select id, pid, name, description, sort, create_time, update_time, create_user, update_user
+        from back_role
+    </select>
+</mapper>

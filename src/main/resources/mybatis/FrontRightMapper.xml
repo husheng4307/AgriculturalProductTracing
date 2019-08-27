@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0/EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.beanyon.apt.common.mapper.IFrontRightMapper">
+    <!-- 根据用户角色id查询用户角色权限信息 -->
+    <select id="findRightsByRid" parameterType="int" resultType="site.beanyon.apt.common.entity.front.FrontRight">
+        select
+        id, name, description, create_time, update_time, create_user, update_user
+        from front_right
+        where id in (
+            select right_id
+            from front_role_right_rel
+            where role_id = #{value}
+        )
+    </select>
+</mapper>

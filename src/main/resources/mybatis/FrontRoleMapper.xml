@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0/EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.beanyon.apt.common.mapper.IFrontRoleMapper">
+    <!-- 根据用户id查询用户角色信息 -->
+    <select id="findRolesByUid" parameterType="int" resultType="site.beanyon.apt.common.entity.front.FrontRole">
+        select id, pid, name, description, sort, create_time, update_time, create_user, update_user
+        from front_role
+        where id = (
+            select role_id
+            from front_user_role_rel
+            where user_id = #{value}
+        )
+    </select>
+</mapper>

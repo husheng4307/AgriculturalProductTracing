@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>区块链农产品溯源平台</title>
+</head>
+<body>
+<h1>区块链农产品溯源平台</h1>
+<a href="/auth/login-page">登录</a>
+<h3 th:text="${message}"></h3>
+<p shiro:hasPermission="user:add"><a href="/user/add-user">添加用户</a></p>
+<p shiro:hasPermission="user:delete"><a href="/user/delete-user">删除用户</a></p>
+</body>
+</html>

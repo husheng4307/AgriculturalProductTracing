@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/apt?serverTimezone=Asia/Shanghai
+    username: root
+    password: BeanYon123
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 1000
+mybatis:
+  mapper-locations:
+    - classpath:/mybatis/*Mapper.xml
+  type-aliases-package: site.beanyon.apt
+  configuration:
+    map-underscore-to-camel-case: true
+swagger:
+  title: 食用农产品溯源项目
+  description: 食用农产品溯源项目微信小程序API说明文档
+  terms-of-service-url: https://www.beanyon.site
+  contact-name: BeanYon
+  contact-url: https://www.beanyon.site
+  contact-email: 1054639005@qq.com
+  version: 0.1

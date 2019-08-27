@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0/EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.beanyon.apt.common.mapper.IBackUserMapper">
+    <!-- 插入用户到数据库 -->
+    <insert id="insertUser" parameterType="site.beanyon.apt.common.entity.back.BackUser">
+        insert into back_user(account, password, salt, name, work_num, create_user)
+        values(#{account}, #{password}, #{salt}, #{name}, #{workNum}, #{createUser})
+    </insert>
+
+    <!-- 查询全部用户信息 -->
+    <select id="findAllUsers" resultType="site.beanyon.apt.common.entity.back.BackUser">
+        select
+        id, account, password, salt, name, avatar, tel, email, work_num, status, sex, birthday, create_time,
+        create_user, update_time, update_user, last_login_time
+        from back_user
+    </select>
+
+    <!-- 根据用户id查询用户信息 -->
+    <select id="findUserById" parameterType="int" resultType="site.beanyon.apt.common.entity.back.BackUser">
+        select
+        id, account, password, salt, name, avatar, tel, email, work_num, status, sex, birthday, create_time,
+        create_user, update_time, update_user, last_login_time
+        from back_user
+        where id = #{value}
+    </select>
+
+    <!-- 根据用户account查询用户信息 -->
+    <select id="findUserByAccount" parameterType="string" resultType="site.beanyon.apt.common.entity.back.BackUser">
+        select
+        id, account, password, salt, name, avatar, tel, email, work_num, status, sex, birthday, create_time,
+        create_user, update_time, update_user, last_login_time
+        from back_user
+        where account = #{value}
+    </select>
+
+    <!-- 根据用户name模糊查询用户信息 -->
+    <select id="findUsersByNameLike" parameterType="string" resultType="site.beanyon.apt.common.entity.back.BackUser">
+        select
+        id, account, password, salt, name, avatar, tel, email, work_num, status, sex, birthday, create_time,
+        create_user, update_time, update_user, last_login_time
+        from back_user
+        where name like concat(concat('%', #{value}), '%')
+    </select>
+
+    <!-- 插入用户角色关系到数据库 -->
+    <insert id="insertUserRoleRel" parameterType="int">
+        insert into back_user_role_rel(user_id, role_id)
+        values(#{userId}, #{roleId})
+    </insert>
+
+    <!-- 根据用户id删除用户 -->
+    <delete id="deleteUserById" parameterType="int">
+        delete from back_user where id = #{value}
+    </delete>
+
+    <!-- 更新用户 -->
+    <update id="updateUser" parameterType="site.beanyon.apt.common.entity.back.BackUser">
+        update back_user
+        <set>
+            <if test="password != null">password = #{password},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+            <if test="tel != null">tel = #{tel},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="birthday != null">birthday = #{birthday},</if>
+            update_time = current_timestamp,
+            update_user = #{updateUser}
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 更新用户登录时间 -->
+    <update id="updateLoginTime" parameterType="int">
+        update back_user
+        set last_login_time = current_timestamp
+        where id = #{id}
+    </update>
+</mapper>
