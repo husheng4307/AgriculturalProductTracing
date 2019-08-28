@@ -14,7 +14,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @SpringBootApplication
 @EnableAsync
-@MapperScan("site.beanyon.apt.common.mapper")
+@MapperScan({"site.beanyon.apt.common.mapper","site.beanyon.apt.lhbb.mapper"})
 public class AgriculturalProducTracingApplication {
     public static void main(String[] args) {
         SpringApplication.run(AgriculturalProducTracingApplication.class, args);
