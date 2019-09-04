@@ -46,18 +46,17 @@ public interface DzMapper {
 
     /**
      * @Author: husheng
-     * @param：  * @param all
+     * @param：  * @param DzDomain dzDomain
      * @return：     null
      * @Description:    新增档主用户
-     * @Date: 下午1:34 19-8-28
+     * @Date: 下午1:34 19-9-3
     */
     @Insert("insert into" +
             " GG_NCP_DZ" +
             " (DZ_ID, DZ_QXID, DZ_MC, DZ_DH, DZ_DKH, DZ_QY, DZ_ZYPZID, DZ_SFZ, DZ_YYZZ, DZ_JYXK, DZ_CJSJ, DZ_GXSJ, DZ_CJZID, DZ_GXZID)" +
             " values" +
-            " (#{id}, #{qxid}, #{mingcheng}, #{dianhua}, #{dangkouhao}, #{quyu}, #{zypz}, #{sfz}, #{yyzz}, #{jyxk}, #{cjsj}, #{gxsj}, #{cjzid}, #{gxzid})")
-    public void insertDz(Integer id, Integer qxid, String mingcheng, String dianhua, String dangkouhao, String quyu,
-                         String zypz, String sfz, String yyzz, String jyxk, Date cjsj, Date gxsj, Integer cjzid, Integer gxzid);
+            " (#{DZ_ID}, #{DZ_QXID}, #{DZ_MC}, #{DZ_DH}, #{DZ_DKH}, #{DZ_QY}, #{DZ_ZYPZID}, #{DZ_SFZ}, #{DZ_YYZZ}, #{DZ_JYXK}, #{DZ_CJSJ}, #{DZ_GXSJ}, #{DZ_CJZID}, #{DZ_GXZID})")
+    public void insertDz(DzDomain dzDomain);
 
     /**
      * @Author: husheng

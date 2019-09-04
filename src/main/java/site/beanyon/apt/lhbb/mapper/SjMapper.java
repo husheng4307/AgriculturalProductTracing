@@ -46,17 +46,16 @@ public interface SjMapper {
 
     /**
      * @Author: husheng
-     * @param：  * @param all
+     * @param：  * @param SjDomain sjDomain
      * @return： * null
      * @Description: 新增司机用户
-     * @Date: 下午8:49 19-8-27
+     * @Date:  19-9-4
     */
     @Insert("insert into" +
             " GG_NCP_SJB" +
             "(SJB_ID,SJB_QXID,SJB_MC,SJB_DH,SJB_SFZ,SJB_JSZ,SJB_CPH,SJB_CX,SJB_DZ,SJB_CJSJ,SJB_GXSJ)" +
-            " values (#{id},#{qxid},#{mingcheng},#{dianhua},#{sfz},#{jsz},#{cph},#{cx},#{dizhi},#{cjsj},#{gxsj})")
-    public void insertSj(Integer id, Integer qxid, String mingcheng, String dianhua, String sfz, String jsz,
-                         String cph, Integer cx, String dizhi, Date cjsj, Date gxsj);
+            " values (#{SJB_ID},#{SJB_QXID},#{SJB_MC},#{SJB_DH},#{SJB_SFZ},#{SJB_JSZ},#{SJB_CPH},#{SJB_CX},#{SJB_DZ},#{SJB_CJSJ},#{SJB_GXSJ})")
+    public void insertSj(SjDomain sjDomain);
 
 
     /**

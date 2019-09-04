@@ -20,6 +20,9 @@ public enum ResponseType {
     ILLEGAL_EMAIL(false, 1009, "邮箱不合法"),
     ILLEGAL_REQUEST_METHOD(false, 1010, "Request Method不合法"),
     NOTHING_TO_UPDATE(false, 1011, "没有要更新的内容"),
+    NOTEXIST(false,1012,"不存在"),
+    ILLEGAL_DELETE(false,1013,"删除失败"),
+    ILLEGAL_INPUT(false,1014,"必要信息不完整"),
     // 数据库
     DATA_EXIST(false, 2001, "重复添加具有唯一约束的数据"),
     // 未知

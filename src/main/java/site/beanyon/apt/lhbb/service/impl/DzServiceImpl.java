@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import site.beanyon.apt.lhbb.entity.DzDomain;
 import site.beanyon.apt.lhbb.mapper.DzMapper;
 import site.beanyon.apt.lhbb.service.DzService;
-
 import java.util.Date;
 import java.util.List;
 
@@ -22,34 +21,82 @@ public class DzServiceImpl implements DzService {
     @Autowired
     private DzMapper dzMapper;
 
+    /**
+     * @Author: husheng
+     * @param：  * @param 司机id，Integer id
+     * @return： 司机用户实体，DzDomain
+     * @Description:    通过档主id查询该档主信息
+     * @Date: 上午11:39 19-9-4
+    */
     @Override
     public DzDomain getDzById(Integer id) {
         DzDomain dz = dzMapper.getDzById(id);
-        System.out.println(dz);
         return dz;
     }
 
+
+    /**
+     * @Author: husheng
+     * @param：  * @param int pageNum, int pageSize
+     * @return：     档主信息列表，PageInfo<DzDomain>
+     * @Description:    查询所有房主信息，并封装进PageInfo<>中，方便后续分页
+     * @Date: 上午11:41 19-9-4
+    */
     @Override
     public PageInfo<DzDomain> getDzAll(int pageNum, int pageSize) {
+
+        //初始化分页器
         PageHelper.startPage(pageNum, pageSize);
+
+        //查询结果
         List<DzDomain> dzAll = dzMapper.getDzAll();
+
+        //封装进分页器
         PageInfo<DzDomain> pageInfo = new PageInfo<>(dzAll);
-        System.out.println(pageInfo);
+
+        //返回
         return pageInfo;
     }
 
+
+    /**
+     * @Author: husheng
+     * @param：  * @param 档主类实体，DzDomain
+     * @return：     boolean
+     * @Description:    新增档主
+     * @Date: 上午11:41 19-9-4
+    */
     @Override
-    public void insertDz(Integer id, Integer qxid, String mingcheng, String dianhua, String dangkouhao, String quyu, String zypz, String sfz, String yyzz, String jyxk, Date cjsj, Date gxsj, Integer cjzid, Integer gxzid) {
-        dzMapper.insertDz(id, qxid, mingcheng, dianhua, dangkouhao, quyu, zypz, sfz, yyzz, jyxk, cjsj, gxsj, cjzid, gxzid);
+    public boolean insertDz(DzDomain dzDomain) {
+        dzMapper.insertDz(dzDomain);
+        return true;
     }
 
+
+    /**
+     * @Author: husheng
+     * @param：  * @param 档主id，Integer id
+     * @return：     boolean
+     * @Description:    通过档主id号，删除该档主信息
+     * @Date: 上午11:44 19-9-4
+    */
     @Override
-    public void deleteDzById(Integer id) {
+    public boolean deleteDzById(Integer id) {
         dzMapper.deleteDzById(id);
+        return true;
+
     }
 
+    /**
+     * @Author: husheng
+     * @param：  * @param 档主id，时间Date
+     * @return：     boolean
+     * @Description:    通过档主id，更新
+     * @Date: 上午11:45 19-9-4
+    */
     @Override
-    public void updateDzById(Integer id, Date date) {
+    public boolean updateDzById(Integer id, Date date) {
         dzMapper.updateDzById(id,new Date());
+        return true;
     }
 }

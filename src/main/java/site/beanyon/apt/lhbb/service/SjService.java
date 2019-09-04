@@ -1,11 +1,8 @@
 package site.beanyon.apt.lhbb.service;
 
-
 import com.github.pagehelper.PageInfo;
 import site.beanyon.apt.lhbb.entity.SjDomain;
-
 import java.util.Date;
-import java.util.List;
 
 /**
  * 司机服务接口，定义与司机相关的操作
@@ -30,7 +27,7 @@ public interface SjService {
     /**
      * @Author: husheng
      * @param：  * @param 第几页pageNum（默认第一页），每页条数pageSize
-     * @return： * 用户实体列表（数量为pageSize）
+     * @return： * 用户实体列表PageInfo<SjDomain>
      * @Description:    查询所有司机用户
      * @Date: 下午9:00 19-8-27
     */
@@ -39,29 +36,28 @@ public interface SjService {
     /**
      * @Author: husheng
      * @param：  * 司机表全字段
-     * @Return: * null
+     * @Return: * boolean
      * @Description:    新增司机用户
-     * @Date: 下午9:00 19-8-27
+     * @Date: 下午9:00 19-9-3
     */
-    public void insertSj(Integer id, Integer qxid, String mingcheng, String dianhua, String sfz, String jsz,
-                         String cph, Integer cx, String dizhi, Date cjsj, Date gxsj);
+    public boolean insertSj(SjDomain sjDomain);
 
     /**
      * @Author: husheng
      * @param：  * 司机id，Integer id
-     * @return：     null
+     * @return：     boolean
      * @Description:    删除司机，通过匹配id
-     * @Date: 上午10:42 19-8-28
+     * @Date: 上午10:42 19-9-3
     */
-    public void deleteSjById(Integer id);
+    public boolean deleteSjById(Integer id);
 
     /**
      * @Author: husheng
      * @param：  * 司机id，更新时间date
-     * @return： 司机类主体SjDomai
+     * @return： boolean
      * @Description: 通过id查找用户，并修改其修改时间字段
-     * @Date: 上午10:56 19-8-28
+     * @Date: 上午10:56 19-9-3
      */
-    public void updateSjById(Integer id,Date date);
+    public boolean updateSjById(Integer id,Date date);
 
 }
